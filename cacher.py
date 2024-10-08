@@ -9,11 +9,12 @@ import json
 import threading
 import time
 import logging
+from openai import AsyncOpenAI
 
 # Define constants and configurations
 GENERAL_MODEL_NAME = 'gpt2-medium'  # Update the model to a more recent, content-filtered version
 EMBEDDING_MODEL_NAME = 'all-MiniLM-L6-v2'  # For embedding generation
-CACHE_THRESHOLD = 10  # Number of times a query must appear to be cached
+CACHE_THRESHOLD = 2  # Number of times a query must appear to be cached
 
 # Paths for storing models and data
 CACHE_DIR = 'cache_models'
@@ -25,6 +26,44 @@ os.makedirs(CACHE_DIR, exist_ok=True)
 
 logging.basicConfig(level=logging.INFO, filename='system.log', format='%(asctime)s - %(levelname)s - %(message)s')
 
+# set env inline:
+api_key = ""
+# Add this to the existing imports and constants
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") or api_key
+USE_OPENAI = os.getenv("USE_OPENAI", "true").lower() == "true"
+
+class OpenAIModel:
+    """
+    Represents the OpenAI GPT-4 model for handling queries via the OpenAI API.
+    """
+    def __init__(self):
+        self.client = AsyncOpenAI(api_key=OPENAI_API_KEY)
+
+    async def generate_response(self, input_text):
+        """
+        Generate a response using the OpenAI GPT-4 model.
+
+        Args:
+            input_text (str): The input text.
+
+        Returns:
+            str: The generated response.
+        """
+        try:
+            response = await self.client.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant."},
+                    {"role": "user", "content": input_text}
+                ],
+                max_tokens=150,
+                n=1,
+                temperature=0.7,
+            )
+            return response.choices[0].message.content.strip()
+        except Exception as e:
+            logging.error(f"Error generating response from OpenAI: {e}")
+            return "An error occurred while processing your request with OpenAI."
 
 class QueryProcessor:
     """
@@ -78,17 +117,35 @@ class GeneralModel:
     Represents the primary generalized AI model for handling uncached queries.
     """
     def __init__(self):
-        self.tokenizer = AutoTokenizer.from_pretrained(GENERAL_MODEL_NAME)
-        self.model = AutoModelForCausalLM.from_pretrained(GENERAL_MODEL_NAME)
-        
-        # Set pad token ID if it's not already set
-        if self.tokenizer.pad_token is None:
-            self.tokenizer.pad_token = self.tokenizer.eos_token
-            self.model.config.pad_token_id = self.model.config.eos_token_id
+        if USE_OPENAI:
+            self.model = OpenAIModel()
+        else:
+            self.tokenizer = AutoTokenizer.from_pretrained(GENERAL_MODEL_NAME)
+            self.model = AutoModelForCausalLM.from_pretrained(GENERAL_MODEL_NAME)
+            
+            # Set pad token ID if it's not already set
+            if self.tokenizer.pad_token is None:
+                self.tokenizer.pad_token = self.tokenizer.eos_token
+                self.model.config.pad_token_id = self.model.config.eos_token_id
 
-    def generate_response(self, input_text):
+    async def generate_response(self, input_text):
         """
-        Generate a response using the general AI model.
+        Generate a response using either the local model or OpenAI model.
+
+        Args:
+            input_text (str): The input text.
+
+        Returns:
+            str: The generated response.
+        """
+        if USE_OPENAI:
+            return await self.model.generate_response(input_text)
+        else:
+            return self._generate_local_response(input_text)
+
+    def _generate_local_response(self, input_text):
+        """
+        Generate a response using the local AI model.
 
         Args:
             input_text (str): The input text.
@@ -469,7 +526,7 @@ class AsyncQueryProcessor(QueryProcessor):
             if cached_model_path:
                 response = await asyncio.to_thread(self.cache_manager.generate_response, cached_model_path, preprocessed_query)
             else:
-                response = await asyncio.to_thread(self.general_model.generate_response, preprocessed_query)
+                response = await self.general_model.generate_response(preprocessed_query)
 
             await asyncio.to_thread(self.update_query_stats, preprocessed_query)
             return response
