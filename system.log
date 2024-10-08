@@ -1,0 +1,68 @@
+2024-10-07 17:01:41,591 - INFO - Use pytorch device_name: cpu
+2024-10-07 17:01:41,591 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-10-07 17:03:17,164 - INFO - Use pytorch device_name: cpu
+2024-10-07 17:03:17,164 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-10-07 17:03:19,300 - INFO - Received query: How do I reset my password?
+2024-10-07 17:03:19,301 - INFO - Received query: What's the weather today?
+2024-10-07 17:03:19,303 - INFO - Received query: How do I reset my password?
+2024-10-07 17:03:19,304 - INFO - Received query: Tell me a joke.
+2024-10-07 17:03:19,305 - INFO - Received query: How do I reset my password?
+2024-10-07 17:06:37,941 - INFO - Use pytorch device_name: cpu
+2024-10-07 17:06:37,941 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-10-07 17:07:09,980 - INFO - Received query: How do I reset my password?
+2024-10-07 17:07:09,982 - INFO - Received query: What's the weather like today?
+2024-10-07 17:07:09,983 - INFO - Received query: How do I reset my password?
+2024-10-07 17:07:09,985 - INFO - Received query: Tell me a family-friendly joke.
+2024-10-07 17:07:09,987 - INFO - Received query: How do I reset my password?
+2024-10-07 17:15:23,903 - INFO - Use pytorch device_name: cpu
+2024-10-07 17:15:23,903 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-10-07 17:15:25,618 - INFO - Received query: How do I reset my password?
+2024-10-07 17:15:25,619 - INFO - Received query: What's the weather like today?
+2024-10-07 17:15:25,620 - INFO - Received query: How do I reset my password?
+2024-10-07 17:15:25,622 - INFO - Received query: Tell me a family-friendly joke.
+2024-10-07 17:15:25,623 - INFO - Received query: How do I reset my password?
+2024-10-07 17:15:27,615 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:15:27,638 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:15:32,439 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:15:33,150 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:15:35,576 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:16:15,746 - INFO - Use pytorch device_name: cpu
+2024-10-07 17:16:15,746 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-10-07 17:16:17,193 - INFO - Received query: How do I reset my password?
+2024-10-07 17:16:17,195 - INFO - Received query: What's the weather like today?
+2024-10-07 17:16:17,196 - INFO - Received query: How do I reset my password?
+2024-10-07 17:16:17,197 - INFO - Received query: Tell me a family-friendly joke.
+2024-10-07 17:16:17,198 - INFO - Received query: How do I reset my password?
+2024-10-07 17:16:18,306 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:16:19,259 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:16:19,330 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:16:19,513 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:16:19,734 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:19:13,103 - INFO - Use pytorch device_name: cpu
+2024-10-07 17:19:13,103 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-10-07 17:19:14,678 - INFO - Received query: How do I reset my password?
+2024-10-07 17:19:14,679 - INFO - Received query: What's the weather like today?
+2024-10-07 17:19:14,680 - INFO - Received query: How do I reset my password?
+2024-10-07 17:19:14,681 - INFO - Received query: Tell me a family-friendly joke.
+2024-10-07 17:19:14,683 - INFO - Received query: How do I reset my password?
+2024-10-07 17:19:15,313 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:19:15,880 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:19:16,956 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:19:16,994 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:19:17,140 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:19:27,164 - ERROR - Error processing query 'How do I reset my password?': Using the `Trainer` with `PyTorch` requires `accelerate>=0.26.0`: Please run `pip install transformers[torch]` or `pip install 'accelerate>={ACCELERATE_MIN_VERSION}'`
+2024-10-07 17:19:27,635 - ERROR - Error processing query 'How do I reset my password?': Using the `Trainer` with `PyTorch` requires `accelerate>=0.26.0`: Please run `pip install transformers[torch]` or `pip install 'accelerate>={ACCELERATE_MIN_VERSION}'`
+2024-10-07 17:19:59,623 - INFO - Use pytorch device_name: cpu
+2024-10-07 17:19:59,623 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2024-10-07 17:20:01,134 - INFO - Received query: How do I reset my password?
+2024-10-07 17:20:01,136 - INFO - Received query: What's the weather like today?
+2024-10-07 17:20:01,137 - INFO - Received query: How do I reset my password?
+2024-10-07 17:20:01,138 - INFO - Received query: Tell me a family-friendly joke.
+2024-10-07 17:20:01,139 - INFO - Received query: How do I reset my password?
+2024-10-07 17:20:01,715 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:20:02,158 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:20:03,240 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:20:03,654 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:20:03,655 - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2024-10-07 17:20:04,232 - ERROR - Error processing query 'How do I reset my password?': Using the `Trainer` with `PyTorch` requires `accelerate>=0.26.0`: Please run `pip install transformers[torch]` or `pip install 'accelerate>={ACCELERATE_MIN_VERSION}'`
+2024-10-07 17:20:04,725 - ERROR - Error processing query 'How do I reset my password?': Using the `Trainer` with `PyTorch` requires `accelerate>=0.26.0`: Please run `pip install transformers[torch]` or `pip install 'accelerate>={ACCELERATE_MIN_VERSION}'`
